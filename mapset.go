@@ -64,6 +64,24 @@ func (s Set[T]) Elements() []T {
 			return reflect.ValueOf(a).String() < reflect.ValueOf(b).String()
 		})
 		return elts
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		elts := s.Unordered()
+		slices.SortFunc(elts, func(a, b T) bool {
+			return reflect.ValueOf(a).Int() < reflect.ValueOf(b).Int()
+		})
+		return elts
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+		elts := s.Unordered()
+		slices.SortFunc(elts, func(a, b T) bool {
+			return reflect.ValueOf(a).Uint() < reflect.ValueOf(b).Uint()
+		})
+		return elts
+	case reflect.Float32, reflect.Float64:
+		elts := s.Unordered()
+		slices.SortFunc(elts, func(a, b T) bool {
+			return reflect.ValueOf(a).Float() < reflect.ValueOf(b).Float()
+		})
+		return elts
 	default:
 		panic("can't sort, use Unordered or ElementsFunc")
 	}
