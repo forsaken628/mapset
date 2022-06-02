@@ -1,5 +1,5 @@
-module bitbucket.org/creachadair/stringset
+module github.com/forsaken628/mapset
 
-go 1.16
+go 1.18
 
-require github.com/BurntSushi/toml v0.4.1
+require golang.org/x/exp v0.0.0-20220518171630-0b5c67f07fdf
