@@ -301,7 +301,7 @@ func Index(needle string, elts []string) int {
 // Contains reports whether v contains s, for v having type Set, []string,
 // map[string]T, or Keyer. It returns false if v's type does not have one of
 // these forms.
-func Contains(v interface{}, s string) bool {
+func Contains(v any, s string) bool {
 	switch t := v.(type) {
 	case []string:
 		return Index(s, t) >= 0
@@ -328,7 +328,7 @@ var refType = reflect.TypeOf((*string)(nil)).Elem()
 // FromKeys returns a Set of strings from v, which must either be a string,
 // a []string, a map[string]T, or a Keyer. It returns nil if v's type does
 // not have one of these forms.
-func FromKeys(v interface{}) Set[string] {
+func FromKeys(v any) Set[string] {
 	var result Set[string]
 	switch t := v.(type) {
 	case string:
@@ -370,7 +370,7 @@ func FromIndexed[T comparable](n int, f func(int) T) Set[T] {
 
 // FromValues returns a Set of the values from v, which has type map[T]string.
 // Returns the empty set if v does not have a type of this form.
-func FromValues(v interface{}) Set[string] {
+func FromValues(v any) Set[string] {
 	if t := reflect.TypeOf(v); t == nil || t.Kind() != reflect.Map || t.Elem() != refType {
 		return nil
 	}

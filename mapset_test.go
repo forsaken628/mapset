@@ -574,7 +574,7 @@ type uniq int
 
 func TestFromValues(t *testing.T) {
 	tests := []struct {
-		input interface{}
+		input any
 		want  []string
 	}{
 		{nil, nil},
@@ -595,7 +595,7 @@ func TestFromValues(t *testing.T) {
 
 func TestFromKeys(t *testing.T) {
 	tests := []struct {
-		input interface{}
+		input any
 		want  Set[string]
 	}{
 		{3.5, nil},                  // unkeyable type
@@ -620,7 +620,7 @@ func TestFromKeys(t *testing.T) {
 
 func TestContainsFunc(t *testing.T) {
 	tests := []struct {
-		input  interface{}
+		input  any
 		needle string
 		want   bool
 	}{
